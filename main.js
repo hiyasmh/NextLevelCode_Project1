@@ -14,7 +14,7 @@ let facts = [
     "I am trained Kathak dancer.",
     "My first tattoo was a duck, hid it from my parents for two weeks.",
     "I was kinda blue when I was born.",
-    "I used to bite my nails constantl.",
+    "I used to bite my nails constantly.",
     "I have always disliked running.",
     "I was in a band called 'Purgatory' between the ages 13 and 16.",
     "I can crack my jaw like people crack fingers and necks.",
