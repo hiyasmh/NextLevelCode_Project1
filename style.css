@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "Meraki";
+    src: url("fonts/MerakiTRIAL-Regular.ttf") format("truetype");
+  }
+  
+  @font-face {
+    font-family: "HomeVideo";
+    src: url("fonts/HomeVideo-BLG6G.ttf") format("truetype");
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: rgb(228, 255, 133);
+  }
+  
+  canvas {
+    display: block;
+  }
+  
+  .content{
+    width: 30vw;
+    height: 75vh;
+    border-radius: 20px;
+    margin-right: 50px;
+    display: block;
+    align-items: end;
+    justify-content: center;
+    padding: 40px;
+    margin-left: 60vw;
+    margin-top: 10vh;
+  }
+  
+  .funfact{
+    font-family: HomeVideo;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .myface{
+    background-image: url('imgs/face20.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+  }
+  
+  h1{
+    font-family: HomeVideo;
+    font-size: 60px;
+    text-align: center;
+  }
+  
+  h2{
+    font-family: HomeVideo;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  h3{
+    font-family: HomeVideo;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .reset{
+    font-family: HomeVideo;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    display: block;
+    justify-content: right;
+    margin-top: 30px;
+  }
