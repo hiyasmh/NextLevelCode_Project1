@@ -1,7 +1,7 @@
 // followed a snake game tutorial by Patt Vira for the general structure.
 let cols;
 let rows;
-let size = 80;
+let size = 70;
 let board = [];
 let food;
 let head;
@@ -11,31 +11,30 @@ let length = 1;
 let face = [];
 let wants = [];
 let HomeVideo;
+let startTime = 0;
 
 function preload() {
   face = [
-    // loadImage('imgs/face1.png'),
-    // loadImage('imgs/face2.png'),
-    // loadImage('imgs/face3.png'),
-    // loadImage('imgs/face4.png'),
-    // loadImage('imgs/face5.png'),
-    // loadImage('imgs/face6.png'),
-    // loadImage('imgs/face7.png'),
-    // loadImage('imgs/face8.png'),
-    // loadImage('imgs/face9.png'),
-    // loadImage('imgs/face10.png'),
-    // loadImage('imgs/face11.png'),
-    // loadImage('imgs/face12.png'),
-    // loadImage('imgs/face13.png'),
-    // loadImage('imgs/face14.png'),
-    // loadImage('imgs/face15.png'),
-    // loadImage('imgs/face16.png'),
-    // loadImage('imgs/face17.png'),
-    // loadImage('imgs/face18.png'),
-    // loadImage('imgs/face19.png'),
+    loadImage('imgs/face1.png'),
+    loadImage('imgs/face2.png'),
+    loadImage('imgs/face3.png'),
+    loadImage('imgs/face4.png'),
+    loadImage('imgs/face5.png'),
+    loadImage('imgs/face6.png'),
+    loadImage('imgs/face7.png'),
+    loadImage('imgs/face8.png'),
+    loadImage('imgs/face9.png'),
+    loadImage('imgs/face10.png'),
+    loadImage('imgs/face11.png'),
+    loadImage('imgs/face12.png'),
+    loadImage('imgs/face13.png'),
+    loadImage('imgs/face14.png'),
+    loadImage('imgs/face16.png'),
+    loadImage('imgs/face15.png'),
+    loadImage('imgs/face17.png'),
+    loadImage('imgs/face19.png'),
     loadImage('imgs/face20.png'),
     loadImage('imgs/face21.png'),
-    loadImage('imgs/face22.png'),
   ];
 
   wants = [
@@ -55,7 +54,7 @@ function preload() {
 }
 
 function setup(){
-  let canvas = createCanvas(800,800);
+  let canvas = createCanvas(770,770);
   let x = (windowWidth - width) / 8;
   let y = (windowHeight - height) / 2;
   canvas.style('display', 'block');
@@ -74,6 +73,24 @@ function setup(){
   food = createVector(int(random(0,cols)), int(random(0,rows)));
   head = createVector(int(random(0,cols)), int(random(0,rows)));
   dir = createVector(0,0);
+  startTime = millis();
+}
+
+//used ChatGPT here, was messing up the part that formats and updates the time
+function updateTimer() {
+    if (gameStarted && !gameOver) {
+        let elapsedTime = int((millis() - startTime) / 1000);
+        let minutes = floor(elapsedTime / 60);
+        let seconds = elapsedTime % 60;
+
+        // still a little confused by this right here
+        let formattedTime = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+
+        let timerDisplay = document.getElementById("timerDisplay");
+        if (timerDisplay) {
+            timerDisplay.innerText = formattedTime;
+        }
+    }
 }
 
 function draw(){
@@ -83,8 +100,10 @@ function draw(){
   board[food.x][food.y] = -1;
   if (gameOver == false){
     board[head.x][head.y] = length;
+    updateTimer();
   } else {
-    background('rgba(255, 255, 255, 0.5)');
+    stopTimer();
+    background('rgba(255, 255, 0, 0.5)');
     textAlign(CENTER, CENTER);
     textSize(75);
     textFont('HomeVideo');
@@ -96,10 +115,18 @@ function draw(){
 function update(){
   head.add(dir);
 
+  if (!gameStarted && (dir.x !== 0 || dir.y !== 0)) {
+    gameStarted = true;
+    startTime = millis();
+    updateFact();
+  }
+
   if (dist(head.x, head.y, food.x, food.y) == 0){
     // food = createVector(int(random(0,cols)), int(random(0,rows)));
     generateFood();
     length += 1;
+    updateLengthDisplay(length);
+    updateFact();
   }
 
   if (head.x < 0 || head.x > cols-1 || head.y < 0 || head.y > rows-1){
@@ -114,6 +141,7 @@ function update(){
     board[head.x][head.y] = 1 + length;
     removeTail();
   }
+    
 }
 
 function generateFood(){
@@ -167,6 +195,11 @@ function displayBoard(){
 }
 
 function keyPressed(){
+  if (!gameStarted) { 
+        gameStarted = true;
+        startTime = millis();
+    }
+
   if (keyCode == LEFT_ARROW){
     dir = createVector(-1,0);
   } else if(keyCode == RIGHT_ARROW){

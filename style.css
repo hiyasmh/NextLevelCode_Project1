@@ -23,7 +23,8 @@
     height: 75vh;
     border-radius: 20px;
     margin-right: 50px;
-    display: block;
+    display: flex;
+    flex-direction: column;
     align-items: end;
     justify-content: center;
     padding: 40px;
@@ -51,26 +52,52 @@
     font-size: 60px;
     text-align: center;
   }
-  
+
   h2{
     font-family: HomeVideo;
-    font-size: 20px;
+    font-size: 15px;
+    padding-bottom: 40px;
     text-align: center;
   }
-  
-  h3{
+
+  #restartBtn {
     font-family: HomeVideo;
-    font-size: 20px;
+    font-size: 50px;
     text-align: center;
-  }
-  
-  .reset{
-    font-family: HomeVideo;
-    font-size: 30px;
-    text-align: center;
-    padding: 20px;
     border-radius: 20px;
     display: block;
-    justify-content: right;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: grey;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#restartBtn:hover {
+    font-family: HomeVideo;
+    font-size: 50px;
+    text-align: center;
+    border-radius: 20px;
+    display: block;
+    margin-top: 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    background-color: gray;
+    border: none;
+    border-radius: 5px;
+}
+
+#gameInfo{
+    font-family: HomeVideo;
+    font-size: 50px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(253, 255, 210);
+    border-radius: 20px;
+    padding: 30px;
     margin-top: 30px;
-  }
+}
