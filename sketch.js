@@ -61,7 +61,7 @@ function setup(){
   canvas.position(x,y);
   canvas.style('border-radius', '18px'); 
   background(101, 130, 0);
-  frameRate(6);
+  frameRate(4);
   cols = width/size;
   rows = height/size;
   for (let i=0; i<cols; i++){
